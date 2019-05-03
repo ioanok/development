@@ -57,7 +57,19 @@ init.bat # Windows - PowerShell
 docker volume create shopware_projectdata
 docker-compose build 
 docker-compose up -d
+```
 
+connect to application container with ssh 
+
+```
+docker exec -it -u application shopware_app bash
+```
+and run
+```
+dev-ops/docker/scripts/check_permissions.sh
+```
+
+```
 bash init.sh # Mac / Linux
 init.bat # Windows - PowerShell
 ```
