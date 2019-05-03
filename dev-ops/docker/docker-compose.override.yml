@@ -2,6 +2,9 @@
 version: "3.3"
 
 services:
+#  data:
+#    ports:
+#      - "2222:22"
   app_server:
     environment:
       CONTAINER_UID: __USER_ID__
@@ -14,5 +17,3 @@ services:
   app_mysql:
     ports:
       - "4406:3306"
-    volumes:
-      - ./dev-ops/docker/_volumes/mysql:/mysql-data

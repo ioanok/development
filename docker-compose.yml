@@ -3,20 +3,32 @@ version: '3.3'
 services:
   app_server:
     build: dev-ops/docker/containers/app
+    container_name: shopware_app
     links:
       - app_mysql:mysql
     extra_hosts:
       - "docker.vm:127.0.0.1"
     volumes:
-      - .:/app
-      - ~/.composer:/.composer
-      - ~/.npm:/.npm
+        - shopware_projectdata:/app
     tmpfs:
       - /tmp:mode=1777
 
   app_mysql:
     build: dev-ops/docker/containers/mysql
+    container_name: shopware_mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: app
       MYSQL_PASSWORD: app
+
+  data:
+      build: dev-ops/docker/containers/ssh
+      container_name: shopware_data
+      image: data
+      volumes:
+          - shopware_projectdata:/app
+      ports:
+          - "2222:22"
+volumes:
+    shopware_projectdata:
+        external: true
