@@ -10,8 +10,6 @@ services:
       - "docker.vm:127.0.0.1"
     volumes:
         - shopware_projectdata:/app
-    tmpfs:
-      - /tmp:mode=1777
 
   app_mysql:
     build: dev-ops/docker/containers/mysql
@@ -20,6 +18,9 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: app
       MYSQL_PASSWORD: app
+
+    volumes:
+      - shopware_mysqldata:/mysql-data
 
   data:
       build: dev-ops/docker/containers/ssh
@@ -31,4 +32,6 @@ services:
           - "2222:22"
 volumes:
     shopware_projectdata:
+        external: true
+    shopware_mysqldata:
         external: true

@@ -55,6 +55,7 @@ init.bat # Windows - PowerShell
 ##### Init
 ```
 docker volume create shopware_projectdata
+docker volume create shopware_mysqldata
 docker-compose build 
 docker-compose up -d
 ```
@@ -73,3 +74,6 @@ dev-ops/docker/scripts/check_permissions.sh
 bash init.sh # Mac / Linux
 init.bat # Windows - PowerShell
 ```
+
+
+Download from container shopware_app back to local to sync everything.
