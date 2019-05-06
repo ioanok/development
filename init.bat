@@ -7,8 +7,10 @@ docker exec shopware_app /bin/sh -c "rm app/vendor/bin -rf"
 
 :: echo "Config composer"
 docker exec  shopware_app /bin/sh -c "mkdir /.composer;"
+docker exec  shopware_app /bin/sh -c "mkdir /.npm;"
 docker exec  shopware_app /bin/sh -c "composer global require hirak/prestissimo"
 docker exec  shopware_app /bin/sh -c "chown application:application /.composer -Rf"
+docker exec  shopware_app /bin/sh -c "chown application:application /.npm -Rf"
 docker exec  shopware_app /bin/sh -c "chown application:application /app -Rf"
 
 :: echo "Install"
